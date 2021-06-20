@@ -1,2 +1,6 @@
 # IDE Generated
 .vscode/
+
+# Python Generated
+
+**/__pycache__

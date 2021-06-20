@@ -1,6 +1,6 @@
 # IGLIB-PY
 
-> Unofficial Python Client For IG REST API.
+> Unofficial Python IG REST API Client.
 
 This library stems from one of my own projects which I decided to rip out the client code and open-source.
 

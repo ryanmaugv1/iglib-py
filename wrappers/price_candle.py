@@ -1,6 +1,6 @@
 """Wrapper for single price action candle. 
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 
 from __future__ import annotations

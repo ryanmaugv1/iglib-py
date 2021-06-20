@@ -4,7 +4,7 @@ Provides methods that abstract away API interface between application and
 IG broker API. This client fully supports all requests available from API
 and handles data conversions and formatting into wrappers for convenience.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 from __future__ import annotations
 

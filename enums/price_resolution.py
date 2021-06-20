@@ -1,6 +1,6 @@
 """Enumerator for all supported price time resolutions.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 
 from enum import Enum

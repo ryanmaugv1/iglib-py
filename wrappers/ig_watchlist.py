@@ -1,6 +1,6 @@
 """IG Eatchlist Data Wrapper Class.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 
 from __future__ import annotations

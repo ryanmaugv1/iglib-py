@@ -3,7 +3,7 @@
 Test that API specification is up-to-date with what we expect and that
 the conversions of API response to data wrappers remains valid.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 import unittest
 

@@ -1,6 +1,6 @@
 """Enumerator for all supported IG trading account types.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 
 from enum import Enum

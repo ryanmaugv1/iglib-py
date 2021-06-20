@@ -1,6 +1,6 @@
 """Enumerator for order direction.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 
 from enum import Enum

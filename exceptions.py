@@ -1,6 +1,6 @@
 """ Custom Exceptions for IGLib library.
 
-Authored By TheCeriousBoi [TCB] (@theceriousboi)
+Authored By Ryan Maugin (@ryanmaugv1)
 """
 
 

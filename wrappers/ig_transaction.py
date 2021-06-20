@@ -5,6 +5,8 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
+from typing import List
+
 
 class IGTransaction:
     """Wrapper for IG Account Transaction Data.
@@ -54,7 +56,7 @@ class IGTransaction:
         self.transaction_type = transaction_type
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [IGTransaction]:
+    def parse_from_dict(res: dict) -> List[IGTransaction]:
         transactions = []
         for transaction in res['transactions']:
             transactions.append(

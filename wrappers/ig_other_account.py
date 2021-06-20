@@ -5,6 +5,8 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
+from typing import List
+
 
 class IGOtherAccount:
     """IG Other Account Wrapper Class.
@@ -29,7 +31,7 @@ class IGOtherAccount:
         self.account_type = account_type
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [IGOtherAccount]:
+    def parse_from_dict(res: dict) -> List[IGOtherAccount]:
         """ Parses other accounts from account response into list of IGOtherAccount's.
 
         Args:

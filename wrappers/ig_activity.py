@@ -5,6 +5,8 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
+from typing import List
+
 
 class IGActivity:
     """Wrapper for IG Account Activity Data.
@@ -42,7 +44,7 @@ class IGActivity:
         self.type = type
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [IGActivity]:
+    def parse_from_dict(res: dict) -> List[IGActivity]:
         """ Parses IGActivity's from activity response dictionary.
 
         Args:

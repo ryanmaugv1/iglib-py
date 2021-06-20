@@ -8,9 +8,9 @@ Authored By Ryan Maugin (@ryanmaugv1)
 import unittest
 
 from utility.constants import Constants
-from iglib.enums.price_resolution import PriceResolution
-from iglib.exceptions import IGServerException, IGClientException
-from iglib.ig_client import IGClient
+from enums.price_resolution import PriceResolution
+from exceptions import IGServerException, IGClientException
+from ig_client import IGClient
 
 
 class IGClientTest(unittest.TestCase):

@@ -5,8 +5,10 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
-from iglib.enums.order_direction import OrderDirection
-from iglib.wrappers.ig_market_instrument import IGMarketInstrument
+from typing import List
+
+from enums.order_direction import OrderDirection
+from wrappers.ig_market_instrument import IGMarketInstrument
 
 
 class IGPosition:
@@ -63,7 +65,7 @@ class IGPosition:
         self.trailing_stop_distance = trailing_stop_distance
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [IGPosition]:
+    def parse_from_dict(res: dict) -> List[IGPosition]:
         """ Parses IGPosition from positions response dictionary.
 
         Args:

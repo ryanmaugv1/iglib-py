@@ -5,6 +5,8 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
+from typing import List
+
 
 class PriceSnapshot:
     """Wrapper for Price Snapshot Data.
@@ -59,7 +61,7 @@ class PriceCandle:
         self.snapshot_time = snapshot_time
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [PriceCandle]:
+    def parse_from_dict(res: dict) -> List[PriceCandle]:
         """Parses price candle response data into PriceCandle class.
         
         Args:

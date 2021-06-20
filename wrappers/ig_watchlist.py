@@ -5,6 +5,8 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
+from typing import List
+
 
 class IGWatchlist:
     """IG Watchlist Data Wrapper Class.
@@ -25,7 +27,7 @@ class IGWatchlist:
         self.name = name
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [IGWatchlist]:
+    def parse_from_dict(res: dict) -> List[IGWatchlist]:
         """Parses market watchlist dict and returns list of IGWatchlist object.
 
         Args:

@@ -5,8 +5,10 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
-from iglib.wrappers.ig_position import IGPosition
-from iglib.wrappers.ig_market_instrument import IGMarketInstrument
+from typing import List
+
+from wrappers.ig_position import IGPosition
+from wrappers.ig_market_instrument import IGMarketInstrument
 
 
 class IGWorkingOrder:
@@ -33,7 +35,7 @@ class IGWorkingOrder:
         self.position_data = position_data
 
     @staticmethod
-    def parse_from_dict(res: dict) -> [IGWorkingOrder]:
+    def parse_from_dict(res: dict) -> List[IGWorkingOrder]:
         """Parses market instrument dict and returns IGMarketInstrument object.
 
         Args:

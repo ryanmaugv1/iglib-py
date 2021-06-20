@@ -5,7 +5,9 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
-from iglib.exceptions import IGClientException
+from typing import List
+
+from exceptions import IGClientException
 
 
 class IGMarketInstrument:
@@ -215,14 +217,14 @@ class IGMarketInstrumentDetails:
                  contract_size: str,
                  controlled_risk_allowed: bool,
                  country: str,
-                 currencies: [dict],
+                 currencies: List[dict],
                  epic: str,
                  expiry: str,
                  expiry_details: dict,
                  force_open_allowed: bool,
                  limited_risk_premium: dict,
                  lot_size: float,
-                 margin_deposit_bands: [dict],
+                 margin_deposit_bands: List[dict],
                  margin_factor: float,
                  margin_factor_unit: str,
                  market_id: str,
@@ -232,7 +234,7 @@ class IGMarketInstrumentDetails:
                  opening_hours: dict,
                  rollover_details: dict,
                  slippage_factor: UnitValPair,
-                 special_info: [dict],
+                 special_info: List[dict],
                  sprint_market_max_expiry_time: float,
                  sprint_market_min_expiry_time: float,
                  stop_limits_allowed: bool,

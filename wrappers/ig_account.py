@@ -5,12 +5,12 @@ Authored By Ryan Maugin (@ryanmaugv1)
 
 from __future__ import annotations
 
-from absl import logging
+from typing import List
 
 from utility.constants import Constants
-from iglib.enums.account_type import AccountType
-from iglib.wrappers.ig_account_info import IGAccountInfo
-from iglib.wrappers.ig_other_account import IGOtherAccount 
+from enums.account_type import AccountType
+from wrappers.ig_account_info import IGAccountInfo
+from wrappers.ig_other_account import IGOtherAccount 
 
 
 class IGAccount:
@@ -33,7 +33,7 @@ class IGAccount:
                  info: IGAccountInfo,
                  currency_iso_code: str,
                  lightstreamer_endpoint: str,
-                 other_accounts: [IGOtherAccount]):
+                 other_accounts: List[IGOtherAccount]):
         self.client_id = client_id
         self.id = id
         self.account_type = type
@@ -44,28 +44,28 @@ class IGAccount:
 
     def log_details(self) -> None:
         """Formats and logs all account details."""
-        logging.info(Constants.LOG_SEPARATOR)
-        logging.info('CURRENT ACCOUNT INFORMATION')
-        logging.info(Constants.LOG_SEPARATOR)
-        logging.info('Client ID: %s', self.client_id)
-        logging.info('Account ID: %s', self.id)
-        logging.info('Account Type: %s', self.account_type.name)
-        logging.info('Account Info:')
-        logging.info('  Balance: %s', self.info.balance)
-        logging.info('  Deposit: %s', self.info.deposit)
-        logging.info('  Profit Loss: %s', self.info.profit_loss)
-        logging.info('  Available: %s', self.info.available)
-        logging.info('Currency ISO Code: %s', self.currency_iso_code)
-        logging.info('Lighstreamer Endpoint: %s', self.lightstreamer_endpoint)
-        logging.info('Other Accounts: %s', "None" if len(self.other_accounts) == 0 else "")
+        print(Constants.LOG_SEPARATOR)
+        print('CURRENT ACCOUNT INFORMATION')
+        print(Constants.LOG_SEPARATOR)
+        print('Client ID: %s', self.client_id)
+        print('Account ID: %s', self.id)
+        print('Account Type: %s', self.account_type.name)
+        print('Account Info:')
+        print('  Balance: %s', self.info.balance)
+        print('  Deposit: %s', self.info.deposit)
+        print('  Profit Loss: %s', self.info.profit_loss)
+        print('  Available: %s', self.info.available)
+        print('Currency ISO Code: %s', self.currency_iso_code)
+        print('Lighstreamer Endpoint: %s', self.lightstreamer_endpoint)
+        print('Other Accounts: %s', "None" if len(self.other_accounts) == 0 else "")
         for x in range(0, len(self.other_accounts)):
             account = self.other_accounts[x]
-            logging.info('  Account #%s', x + 1)
-            logging.info('      Account ID: %s', account.account_id)
-            logging.info('      Account Name: %s', account.account_name)
-            logging.info('      Preferred: %s', account.preferred)
-            logging.info('      Account Type: %s', account.account_type)
-        logging.info(Constants.LOG_SEPARATOR)
+            print('  Account #%s', x + 1)
+            print('      Account ID: %s', account.account_id)
+            print('      Account Name: %s', account.account_name)
+            print('      Preferred: %s', account.preferred)
+            print('      Account Type: %s', account.account_type)
+        print(Constants.LOG_SEPARATOR)
 
     @staticmethod
     def parse_from_dict(res: dict) -> IGAccount:

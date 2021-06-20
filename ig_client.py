@@ -9,30 +9,29 @@ Authored By Ryan Maugin (@ryanmaugv1)
 from __future__ import annotations
 
 import json
-from typing import Any
+from typing import Any, List
 
 import jsonpickle
 import requests
-from absl import logging
 from urllib.parse import urlencode, quote_plus
 
-from iglib.exceptions import IGClientException
-from iglib.exceptions import IGServerException
-from iglib.enums.order_direction import OrderDirection
-from iglib.enums.price_resolution import PriceResolution
-from iglib.enums.request_type import RequestType
-from iglib.wrappers.ig_working_order import IGWorkingOrder
-from iglib.wrappers.ig_transaction import IGTransaction
-from iglib.wrappers.ig_account import IGAccount
-from iglib.wrappers.ig_activity import IGActivity
-from iglib.wrappers.ig_watchlist import IGWatchlist
-from iglib.wrappers.ig_market_instrument import IGMarketInstrument
-from iglib.wrappers.ig_market_instrument import IGMarketDealingRules
-from iglib.wrappers.ig_market_instrument import IGMarketInstrumentDetails
-from iglib.wrappers.ig_market_instrument import IGMarketInstrumentSnapshot
-from iglib.wrappers.ig_position import IGPosition
-from iglib.wrappers.ig_price_allowance import IGPriceAllowance
-from iglib.wrappers.price_candle import PriceCandle
+from exceptions import IGClientException
+from exceptions import IGServerException
+from enums.order_direction import OrderDirection
+from enums.price_resolution import PriceResolution
+from enums.request_type import RequestType
+from wrappers.ig_working_order import IGWorkingOrder
+from wrappers.ig_transaction import IGTransaction
+from wrappers.ig_account import IGAccount
+from wrappers.ig_activity import IGActivity
+from wrappers.ig_watchlist import IGWatchlist
+from wrappers.ig_market_instrument import IGMarketInstrument
+from wrappers.ig_market_instrument import IGMarketDealingRules
+from wrappers.ig_market_instrument import IGMarketInstrumentDetails
+from wrappers.ig_market_instrument import IGMarketInstrumentSnapshot
+from wrappers.ig_position import IGPosition
+from wrappers.ig_price_allowance import IGPriceAllowance
+from wrappers.price_candle import PriceCandle
 from utility.constants import Constants
 
 
@@ -77,10 +76,10 @@ class IGClient:
         Raises:
             Exception: If request to authenticate into account failed.
         """
-        logging.info(Constants.LOG_SEPARATOR)
-        logging.info('AUTHENTICATING')
-        logging.info(Constants.LOG_SEPARATOR)
-        logging.info('Logging into "%s" account...', self.identifier)
+        print(Constants.LOG_SEPARATOR)
+        print('AUTHENTICATING')
+        print(Constants.LOG_SEPARATOR)
+        print('Logging into "%s" account...', self.identifier)
 
         url = '%s/session' % self._get_base_api_url()
         headers = {'X-IG-API-KEY': self.key, 'VERSION': '2'}
@@ -91,14 +90,14 @@ class IGClient:
             raise IGServerException(
                 'Failed to log_details into "%s" account with error: %s'
                 % (self.identifier, response.json()['errorCode']))
-        logging.info('Successfully logged into "%s" account.', self.identifier)
+        print('Successfully logged into "%s" account.', self.identifier)
 
         self.cst = response.headers['CST']
         self.securityToken = response.headers['X-SECURITY-TOKEN']
         self.account = IGAccount.parse_from_dict(response.json())
 
-        logging.info('CST Token: %s', self.cst)
-        logging.info('Security Token: %s', self.securityToken)
+        print('CST Token: %s', self.cst)
+        print('Security Token: %s', self.securityToken)
         self.account.log_details()
 
     def is_logged_in(self):
@@ -216,7 +215,7 @@ class IGClient:
         return IGPriceAllowance.parse_from_dict(response.json()['allowance'])
 
     def get_historical_price(
-            self, epic: str, resolution: PriceResolution, from_date: str, to_date: str) -> [PriceCandle]:
+            self, epic: str, resolution: PriceResolution, from_date: str, to_date: str) -> List[PriceCandle]:
         """Get historical candle price data within specific date range.
 
         Fetch historical price candle data between specified time range using
@@ -240,7 +239,7 @@ class IGClient:
                 'Failed to fetch historical price data with following error: %s' % response.json()['errorCode'])
         return PriceCandle.parse_from_dict(response.json())
 
-    def get_all_working_orders(self) -> [IGWorkingOrder]:
+    def get_all_working_orders(self) -> List[IGWorkingOrder]:
         """Returns all working orders for account.
 
         Raises:
@@ -253,7 +252,7 @@ class IGClient:
                 'Failed to fetch working orders data with following error: %s' % response.json()['errorCode'])
         return IGWorkingOrder.parse_from_dict(response.json())
 
-    def get_all_open_positions(self) -> [IGPosition]:
+    def get_all_open_positions(self) -> List[IGPosition]:
         """Returns list of IGPosition objects containing all open account positions.
 
         Raises:
@@ -532,7 +531,7 @@ class IGClient:
                 'Failed request to update position with following error: %s' % response.json()['errorCode'])
         return response.json()
 
-    def get_activity(self, from_date: str, to_date: str = None, detailed: bool = False) -> [IGActivity]:
+    def get_activity(self, from_date: str, to_date: str = None, detailed: bool = False) -> List[IGActivity]:
         """Get all historical account activity within date range.
 
         Args:
@@ -619,7 +618,7 @@ class IGClient:
                 'Failed to fetch account activity with following error: %s' % response.json()['errorCode'])
         return IGActivity.parse_from_dict(response.json())
 
-    def get_transactions(self, from_date: str, to_date: str = None) -> [IGTransaction]:
+    def get_transactions(self, from_date: str, to_date: str = None) -> List[IGTransaction]:
         """ Get all account transactions within specified date range.
 
         Args:
@@ -641,7 +640,7 @@ class IGClient:
                 'Failed to fetch account transaction with following error: %s' % response.json()['errorCode'])
         return IGTransaction.parse_from_dict(response.json())
 
-    def get_transactions_by_type(self, transaction_type: str, from_date: str, to_date: str = None) -> [IGTransaction]:
+    def get_transactions_by_type(self, transaction_type: str, from_date: str, to_date: str = None) -> List[IGTransaction]:
         """ Get all account transactions within specified date range.
 
         Args:
@@ -664,7 +663,7 @@ class IGClient:
                 'Failed to fetch account transaction with following error: %s' % response.json()['errorCode'])
         return IGTransaction.parse_from_dict(response.json())
 
-    def get_watchlist(self, name: str) -> [IGMarketInstrument]:
+    def get_watchlist(self, name: str) -> List[IGMarketInstrument]:
         """Get all market instruments within watchlist.
 
         Args:
@@ -682,7 +681,7 @@ class IGClient:
                 'Failed to get watchlist instruments with following error: %s' % response.json()['errorCode'])
         return [IGMarketInstrument.parse_from_dict(market) for market in response.json()['markets']]
 
-    def get_all_watchlists(self) -> [IGWatchlist]:
+    def get_all_watchlists(self) -> List[IGWatchlist]:
         """Get all watchlists belonging to the active account.
 
         Returns:

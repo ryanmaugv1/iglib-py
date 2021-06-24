@@ -22,8 +22,10 @@ It provides a variety of useful things, such as:
  3. Clone Repository.
     - `git clone https://github.com/ryanmaugv1/iglib-py`
  4. Move into project directory.
- 5. Import client (`ig_client.py`) like you would any other local module.
- 6. Done.
+ 5. Update constants with your own app Key, ID, Password and Account IDs.
+    - Edit constants in `utility/constants.py`.
+ 7. Import client (`ig_client.py`) like you would any other local module.
+ 8. Done.
   
  ## Author
  
